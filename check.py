@@ -42,11 +42,11 @@ for tagline in row:
         # チェック
         matchOB = re.search(patternA,convertedTxt)
         if matchOB:
-            print str(count) + " Line " +"error"
+            print str(count) + " Line " +"Error"
             errorFlg = 1
         else:
             pass
-        count += 1
+    count += 1
 
 if errorFlg == 0:
     print "No Error"
