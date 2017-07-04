@@ -5,6 +5,24 @@ import re
 patternA = r">*?\s</|>*?　</" # 正規表現のルール。</の前のスペース検知
 patternB = r"-->"
 
+#-- 説明文 ココカラ --
+frame = u"--"
+description = [
+    u"HTMLの閉じタグの前に不要な空白がないか調べます。",
+    u"URLを絶対パスで入れてください。（ファイルをドラッグ&ドロップでおkです。）",
+    u"※URLの末尾にスペースが入らないように注意してください。"
+]
+maxtxtlen = 0
+for var in description:
+    txtlen = len(var)
+    if maxtxtlen < txtlen:
+        maxtxtlen = txtlen
+insertTxt = ""
+for var in description:
+    insertTxt += " " + var + "\n"
+print frame*maxtxtlen + "\n" + insertTxt[0:-2] + "\n" + frame*maxtxtlen
+#-- 説明文 ココマデ --
+
 url = raw_input('URL:') #入力したURLを変数に入れる
 
 # HTMLファイルを読み込み、行ごとに分割
@@ -42,7 +60,7 @@ for tagline in row:
         # チェック
         matchOB = re.search(patternA,convertedTxt)
         if matchOB:
-            print str(count) + " Line " +"Error"
+            print str(count) + " Line Error"
             errorFlg = 1
         else:
             pass
