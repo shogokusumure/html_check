@@ -16,7 +16,7 @@ for tagline in row:
     flg = 1
     for parseTxt in tagline:
         if flg == 1:
-            if parseTxt == " ":
+            if parseTxt == " " or parseTxt == "\t":
                 pass
             else:
                 convertedTxt += parseTxt
