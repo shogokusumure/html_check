@@ -2,15 +2,20 @@
 
 import re
 
-patternA = r">*?\s<|>*?　<"
+patternA = r">*?\s</|>*?　</" # 正規表現のルール。</の前のスペース検知
 
-url = raw_input('URL:')
+url = raw_input('URL:') #入力したURLを変数に入れる
 
+# HTMLファイルを読み込み、行ごとに分割
 allLines = open(url).read()
 row = allLines.split("\n")
+
+# 諸々の変数定義
 textLine = ""
 count = 1
 errorFlg = 0
+
+
 for tagline in row:
     convertedTxt = "" #初期化
     flg = 1
@@ -23,6 +28,8 @@ for tagline in row:
                 flg = 0
         else:
             convertedTxt += parseTxt
+
+    # チェック
     matchOB = re.search(patternA,convertedTxt)
     if matchOB:
         print str(count) + " Line " +"error"
