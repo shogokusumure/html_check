@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*- 
+# -*- coding: utf-8 -*-
 
 import re
 
@@ -17,7 +17,6 @@ count = 1
 commentFlg = 0
 errorFlg = 0
 
-
 for tagline in row:
     convertedTxt = "" #初期化
     flg = 1
@@ -30,16 +29,16 @@ for tagline in row:
                 flg = 0
         else:
             convertedTxt += parseTxt
-    
+
     # コメントアウト箇所を無視
     if convertedTxt[0:4] == "<!--":
         commentFlg = 1
-    
+
     if commentFlg == 1:
         matchOB = re.search(patternB,convertedTxt)
         if matchOB:
             commentFlg = 0
-    elif commentFlg == 0:    
+    elif commentFlg == 0:
         # チェック
         matchOB = re.search(patternA,convertedTxt)
         if matchOB:
