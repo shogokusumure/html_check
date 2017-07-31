@@ -56,7 +56,10 @@ define(function (require, exports, module) {
 
 		// 行末のスペースを発見したら削除する関数
         deleteSpace_line_last(parse_txt,Manager,i);
-        console.log(parse_txt)
+
+        // 行内に不穏なスペースを発見したら警告する関数
+        // alert_unrest_space(parse_txt,Manager,i);
+
 
         i += 1;
     }
@@ -91,23 +94,19 @@ define(function (require, exports, module) {
     var flg = 0
     var txtlen = txt.length;
 	// 行末に半角スペースがあればflgを更新
-    if(txt[txtlen-1] == " "){
-        console.log(txt);
+    if(txt[txtlen-1] == " " | txt[txtlen-1] == "　"){
         flg = 1;
     }
-	// 行に半角スペースしかなかったらテキストを置換してスペースを削除
+	// 行末から半角スペースが何文字あるか探いて、スペースを削除
     var space_len = 0;
     var count = txtlen - 1;
     if(flg == 1){
         while(true){
-            if(txt[count] == " "){
+            if(txt[count] == " " | txt[count] == "　"){
                 space_len +=1;
-                console.log("roop");
             }else if(count == 0){
-                console.log("roopend");
                 break;
             }else{
-                console.log("roopend");
                 break;
             }
             count = count-1;
@@ -123,6 +122,12 @@ define(function (require, exports, module) {
         currentDoc.replaceRange(txt.slice(0,space_len*-1), start, end);
     }
   }
+
+//   function alert_unrest_space(txt,all_txt,currentLine){
+// 	var currentDoc = all_txt.currentDoc;
+//     var pattern = ""
+
+//   }
 
   //コマンドを登録
   CommandManager.register(COMMAND_NAME, COMMAND_ID, completeImageSize);
